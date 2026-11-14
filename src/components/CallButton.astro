@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+interface Props {
+  label?: string;
+  class?: string;
+  id?: string;
+}
+const { label = `Appeler le ${site.phone}`, class: className, id } = Astro.props;
+---
+<a
+  id={id}
+  href={site.phoneHref}
+  class:list={[
+    'btn-motion inline-flex min-h-14 items-center justify-center gap-3 rounded-sm bg-gold px-7 text-lg font-semibold text-night no-underline hover:bg-gold-light',
+    className,
+  ]}
+>
+  <Icon name="phone" size={22} strokeWidth={2} />
+  <span>{label}</span>
+</a>

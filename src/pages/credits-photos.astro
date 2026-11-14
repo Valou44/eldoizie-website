@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import credits from '../data/photo-credits.json';
+import { site } from '../data/site';
+
+// Photos d'illustration provisoires : à retirer au fur et à mesure que les photos du client arrivent.
+const used = ['f201824352', 'f24769147', 'f47003897', 'f122533004', 'f134639190'];
+const photos = credits.photos.filter((p) => used.includes(p.id));
+---
+<Layout title={`Crédits photos | ${site.name}`} description={`Auteurs et licences des photographies d’illustration du site ${site.name}.`} noindex>
+  <Header />
+  <main id="contenu" class="bg-ivory pt-36 pb-24 text-text">
+    <article class="container-site flex max-w-[48rem] flex-col gap-8">
+      <h1 class="text-5xl">Crédits photos</h1>
+      <ul class="flex flex-col border-t border-text/12">
+        {photos.map((p) => (
+          <li class="border-b border-text/12 py-4">
+            <a href={p.page} rel="noopener">{p.alt}</a> — {p.by}, {p.source},
+            licence <a href={p.licenceUrl} rel="noopener license">{p.licence}</a>.
+          </li>
+        ))}
+      </ul>
+      <p><a href="/" class="font-medium">← Retour à l’accueil</a></p>
+    </article>
+  </main>
+</Layout>

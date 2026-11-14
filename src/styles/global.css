@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "@fontsource-variable/jost";
+@import "@fontsource-variable/figtree";
+
+/*
+  Direction A « Prestige », retravaillée avec Taste Skill.
+  Bleu nuit + or gardés (demande client), rendus plus chaleureux : alternance bleu nuit / ivoire,
+  vraies photos, titres en Jost 400 en casse normale, aucun effet « tech ».
+*/
+@theme {
+  --font-display: "Jost Variable", system-ui, sans-serif;
+  --font-sans: "Figtree Variable", system-ui, sans-serif;
+
+  --color-night: #0f1b33;      /* bleu nuit, un peu réchauffé */
+  --color-night-2: #16243f;    /* surfaces sur bleu nuit */
+  --color-ink: #f3f1ea;        /* texte sur bleu nuit (≈ 15:1) */
+  --color-ink-soft: #c9cfdc;   /* paragraphe sur bleu nuit (≈ 10:1) */
+  --color-muted: #a3adc2;      /* labels sur bleu nuit (≈ 7:1) */
+  --color-gold: #c9a24b;       /* accent : bouton principal, focus, petites marques */
+  --color-gold-light: #d8b867; /* survol */
+  --color-gold-dark: #7d5f1c;  /* or lisible sur ivoire (≈ 5.6:1) */
+  --color-ivory: #f6f2e9;      /* fond clair chaleureux */
+  --color-paper: #fffdf8;      /* surfaces sur ivoire */
+  --color-text: #17213a;       /* texte sur ivoire (≈ 15:1) */
+  --color-slate: #3b4560;      /* texte secondaire sur ivoire (≈ 8.5:1) */
+
+  --container-site: 80rem;     /* 1280px */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 4.5rem; /* hauteur du header fixe */
+  }
+  body {
+    @apply bg-ivory font-sans text-text antialiased;
+    font-size: 1.0625rem; /* 17px : public souvent âgé */
+    line-height: 1.65;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    font-weight: 400;
+    text-wrap: balance;
+    hyphens: manual;
+  }
+  h1, h2 { letter-spacing: -0.02em; }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+  /* Sur fond ivoire, l'or n'atteint pas 3:1 : anneau bleu nuit. */
+  .bg-ivory :focus-visible {
+    outline-color: var(--color-text);
+  }
+}
+
+@utility container-site {
+  width: min(100% - 3rem, var(--container-site));
+  margin-inline: auto;
+  @media (width >= 64rem) {
+    width: min(100% - 10rem, var(--container-site));
+  }
+}
+
+/* Une section = un écran sur ordinateur, contenu calé en haut. */
+@utility screen-section {
+  padding-block: 6rem 3rem;
+  @media (width >= 64rem) {
+    min-height: 100svh;
+    padding-block: 7.5rem 4.5rem;
+  }
+}
+
+@utility label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ---------- Micro-animations (Taste Skill, règle 5) ---------- */
+
+/* Boutons : montent au survol, s'enfoncent au clic. */
+@utility btn-motion {
+  transition: transform 180ms var(--ease-out-soft), background-color 180ms, color 180ms, border-color 180ms;
+  &:hover { transform: translateY(-1px); }
+  &:active { transform: translateY(1px) scale(0.99); }
+}
+
+/* Lien texte : le soulignement se dessine. */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  text-decoration: none;
+  transition: background-size 220ms var(--ease-out-soft), color 180ms;
+  &:hover { background-size: 100% 1px; }
+}
+
+/* Photo : zoom léger dans son cadre. */
+@utility photo-zoom {
+  overflow: hidden;
+  & img { transition: transform 500ms var(--ease-out-soft); }
+  &:hover img { transform: scale(1.03); }
+}
+
+/* Entrée du héros, une seule fois au chargement. */
+@keyframes enter-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@utility enter {
+  animation: enter-rise 700ms var(--ease-out-soft) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

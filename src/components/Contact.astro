@@ -1,0 +1,48 @@
+---
+/** Section de clôture : la réservation, puis le pied de page (Taste Skill : un seul bloc final). */
+import CallButton from './CallButton.astro';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer id="contact" class="flex flex-col bg-night pt-24 pb-32 text-ink md:pb-12 lg:min-h-svh lg:pt-30">
+  <div class="container-site flex flex-1 flex-col justify-between gap-20">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-6">
+      <div class="flex flex-col gap-6 lg:col-span-7">
+        <p class="label text-gold">Réservation</p>
+        <h2 class="text-4xl leading-[1.08] lg:text-6xl">Réservez votre prochain trajet par téléphone</h2>
+        <p class="max-w-[34rem] text-lg text-ink-soft">Idéalement la veille, et dès que possible pour une entrée à l’hôpital. Je vous réponds directement.</p>
+        <div class="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:gap-8">
+          <CallButton class="w-full sm:w-auto" />
+          <a href={`mailto:${site.email}`} class="link-draw inline-flex min-h-11 items-center gap-2.5 self-start text-lg text-ink-soft hover:text-ink sm:self-auto">
+            <Icon name="mail" class="text-gold" /> {site.email}
+          </a>
+        </div>
+      </div>
+      <dl class="grid content-start gap-0 border-t border-white/15 lg:col-span-4 lg:col-start-9">
+        <div class="flex flex-col gap-1 border-b border-white/15 py-5">
+          <dt class="label text-muted">Horaires</dt>
+          <dd class="text-lg">{site.hours ? site.hours.label : 'Sur réservation, horaires à venir'}</dd>
+        </div>
+        <div class="flex flex-col gap-1 border-b border-white/15 py-5">
+          <dt class="label text-muted">Basé à</dt>
+          <dd class="text-lg">{site.city}, {site.department}</dd>
+        </div>
+        <div class="flex flex-col gap-1 border-b border-white/15 py-5">
+          <dt class="label text-muted">Secteur</dt>
+          <dd class="text-lg">Tout le {site.region}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="flex flex-col gap-6 border-t border-white/15 pt-8 text-[0.9375rem] text-muted">
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <Logo />
+        <a href="/mentions-legales/" class="link-draw inline-flex min-h-11 items-center text-ink-soft hover:text-ink">Mentions légales</a>
+      </div>
+      <p>* Selon votre situation : prise en charge à 100 % (ALD, maternité, accident du travail…) ou 55 % par l’Assurance Maladie, complétés par votre mutuelle.</p>
+      <p>© {year} {site.name}, taxi conventionné CPAM en Vendée. <slot name="credits" /></p>
+    </div>
+  </div>
+</footer>

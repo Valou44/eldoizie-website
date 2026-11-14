@@ -1,0 +1,32 @@
+---
+import { site } from '../data/site';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+
+const links = [
+  { href: '/#services', label: 'Trajets' },
+  { href: '/#prise-en-charge', label: 'Démarches' },
+  { href: '/#zone', label: 'Secteur' },
+  { href: '/#chauffeur', label: 'Chauffeur' },
+  { href: '/#faq', label: 'Questions' },
+];
+---
+<header class="fixed inset-x-0 top-0 z-30 h-18 border-b border-white/10 bg-night">
+  <div class="container-site flex h-full items-center justify-between gap-6">
+    <Logo />
+    <nav aria-label="Navigation principale" class="hidden lg:block">
+      <ul class="flex gap-8 text-[0.9375rem] font-medium">
+        {links.map((l) => (
+          <li><a href={l.href} class="link-draw whitespace-nowrap text-ink-soft hover:text-ink">{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a
+      href={site.phoneHref}
+      class="btn-motion hidden min-h-11 items-center gap-2.5 rounded-sm bg-gold md:inline-flex px-5 text-[0.9375rem] font-semibold text-night no-underline hover:bg-gold-light"
+    >
+      <Icon name="phone" size={18} strokeWidth={2} />
+      <span>{site.phone}</span>
+    </a>
+  </div>
+</header>

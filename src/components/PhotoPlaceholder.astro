@@ -1,0 +1,17 @@
+---
+/**
+ * Emplacement réservé à une photo du client (jamais remplacé par une image de banque d'images).
+ * À remplacer par <img> ou <Image /> dès que la photo existe.
+ */
+import Icon from './Icon.astro';
+interface Props { label: string; class?: string; }
+const { label, class: className } = Astro.props;
+---
+<div
+  role="img"
+  aria-label={label}
+  class:list={['flex flex-col items-center justify-center gap-3 bg-night-2 p-6 text-center text-[0.9375rem] text-muted', className]}
+>
+  <Icon name="user" size={56} strokeWidth={1} class="text-gold/70" />
+  <span>{label}</span>
+</div>

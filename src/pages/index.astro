@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Steps from '../components/Steps.astro';
+import Zone from '../components/Zone.astro';
+import About from '../components/About.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import MobileCallBar from '../components/MobileCallBar.astro';
+import { site, areaServed } from '../data/site';
+import { faq } from '../data/faq';
+
+const base = site.url;
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${base}/#entreprise`,
+  name: site.name,
+  description: site.description,
+  url: base,
+  telephone: site.phoneHref.replace('tel:', ''),
+  email: site.email,
+  image: `${base}/og-image.png`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.city,
+    postalCode: site.postalCode,
+    addressRegion: site.region,
+    addressCountry: 'FR',
+  },
+  areaServed: areaServed.map((name) => ({ '@type': 'Place', name })),
+  ...(site.hours ? { openingHours: site.hours.schema } : {}),
+};
+
+const taxiService = {
+  '@context': 'https://schema.org',
+  '@type': 'TaxiService',
+  '@id': `${base}/#taxi`,
+  name: `${site.name}, taxi conventionné CPAM`,
+  serviceType: 'Transport médical assis conventionné et trajets privés',
+  provider: { '@id': `${base}/#entreprise` },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: site.department },
+    { '@type': 'AdministrativeArea', name: site.region },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Trajets',
+    itemListElement: [
+      'Consultations et examens médicaux',
+      'Dialyse, chimiothérapie, radiothérapie',
+      'Entrées et sorties d’hôpital',
+      'Gares et aéroport Nantes-Atlantique',
+    ].map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
+  },
+};
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Layout
+  title="Taxi conventionné CPAM en Vendée | El Taxi d'Oisy"
+  jsonLd={[business, taxiService, faqPage]}
+>
+  <Header />
+  <main id="contenu">
+    <Hero />
+    <Services />
+    <Steps />
+    <Zone />
+    <About />
+    <Faq />
+  </main>
+  <Contact>
+    <span slot="credits">Photos d’illustration : <a href="/credits-photos/" class="link-draw text-ink-soft hover:text-ink">crédits</a>.</span>
+  </Contact>
+  <MobileCallBar />
+</Layout>

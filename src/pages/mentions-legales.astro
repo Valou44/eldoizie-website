@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { site } from '../data/site';
+---
+<Layout title={`Mentions légales | ${site.name}`} description={`Mentions légales du site ${site.name}, taxi conventionné en Vendée.`}>
+  <Header />
+  <main id="contenu" class="bg-ivory pt-36 pb-24 text-text">
+    <article class="container-site flex max-w-[48rem] flex-col gap-10">
+      <h1 class="text-5xl">Mentions légales</h1>
+
+      <section class="flex flex-col gap-3">
+        <h2 class="text-2xl">Éditeur du site</h2>
+        <p>{site.name} — {site.legal.owner}, entrepreneur individuel.<br />
+          SIRET : {site.legal.siret}<br />
+          Autorisation de stationnement : {site.legal.adsNumber}<br />
+          Taxi conventionné par l’Assurance Maladie (CPAM de la Vendée).<br />
+          Téléphone : <a href={site.phoneHref}>{site.phone}</a> · E-mail : <a href={`mailto:${site.email}`}>{site.email}</a></p>
+        <p>Directeur de la publication : {site.legal.owner}.</p>
+      </section>
+
+      <section class="flex flex-col gap-3">
+        <h2 class="text-2xl">Hébergement</h2>
+        <p>{site.legal.host}</p>
+      </section>
+
+      <section class="flex flex-col gap-3">
+        <h2 class="text-2xl">Données personnelles</h2>
+        <p>Ce site ne collecte aucune donnée personnelle : il ne contient ni formulaire, ni cookie de mesure d’audience, ni traceur publicitaire. Les polices de caractères sont hébergées sur le site lui-même.</p>
+        <p>Les informations transmises par téléphone ou par e-mail servent uniquement à organiser vos trajets et à la facturation auprès de l’Assurance Maladie.</p>
+      </section>
+
+      <section class="flex flex-col gap-3">
+        <h2 class="text-2xl">Propriété intellectuelle</h2>
+        <p>Les textes de ce site appartiennent à {site.name}. Les photographies d’illustration sont publiées sous licences libres ; leurs auteurs sont cités sur la page <a href="/credits-photos/">crédits photos</a>.</p>
+      </section>
+
+      <p><a href="/" class="font-medium">← Retour à l’accueil</a></p>
+    </article>
+  </main>
+</Layout>

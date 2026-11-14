@@ -1,0 +1,13 @@
+---
+import { site } from '../data/site';
+interface Props { tone?: 'light' | 'dark'; }
+const { tone = 'light' } = Astro.props;
+---
+<a
+  href="/"
+  class:list={['inline-flex items-center gap-3 no-underline', tone === 'light' ? 'text-ink' : 'text-text']}
+  aria-label={`${site.name}, accueil`}
+>
+  <span class="flex size-9 items-center justify-center rounded-full border border-gold font-display text-lg text-gold" aria-hidden="true">O</span>
+  <span class="font-display text-[1.375rem] leading-none tracking-[-0.01em]">{site.name}</span>
+</a>
