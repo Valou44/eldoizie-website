@@ -1,57 +1,43 @@
 ---
-import CallButton from './CallButton.astro';
-
-const facts = [
-  { title: 'Conventionné CPAM', text: 'Agréé Assurance Maladie' },
-  { title: 'Tiers payant', text: 'Aucune avance de frais' },
-  { title: 'Un seul chauffeur', text: 'Toujours le même visage' },
-];
+import Icon from './Icon.astro';
+import { site } from '../data/site';
 ---
-<section class="relative bg-night text-ink lg:h-svh lg:min-h-[52rem]">
-  <div class="container-site grid h-full gap-12 pt-28 pb-16 lg:grid-cols-12 lg:gap-6 lg:pt-36 lg:pb-16">
-    <div class="enter flex flex-col gap-7 lg:col-span-6 lg:pr-8">
-      <p class="label text-gold">Taxi conventionné · Vendée et Pays de la Loire</p>
-      <h1 class="text-[2.5rem] leading-[1.06] sm:text-6xl lg:text-[4.25rem]">
-        Le taxi de vos rendez-vous médicaux, conduit avec égards.
-      </h1>
-      <p class="max-w-[34rem] text-lg leading-relaxed text-ink-soft lg:text-xl">
-        Consultations, hospitalisations, dialyse, chimiothérapie : je viens vous chercher chez vous
-        et je vous dépose devant le service. Avec votre bon de transport, vous n’avancez rien.
-      </p>
-      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <CallButton id="hero-call" class="w-full sm:w-auto" />
-        <a
-          href="#prise-en-charge"
-          class="btn-motion inline-flex min-h-14 items-center justify-center rounded-sm border border-ink/35 px-7 text-lg font-medium text-ink no-underline hover:border-ink"
-        >Voir les démarches</a>
-      </div>
-      <dl class="mt-auto grid grid-cols-1 gap-5 pt-4 sm:grid-cols-3">
-        {facts.map((f) => (
-          <div class="flex flex-col gap-1 border-t border-gold/40 pt-4">
-            <dt class="font-display text-xl text-ink">{f.title}</dt>
-            <dd class="text-[0.9375rem] text-muted">{f.text}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
+<section id="accueil" class="relative isolate overflow-hidden bg-night text-ink">
+  <!-- Photo d'illustration (stand-in) : à remplacer par une photo du DS 7 du client, idéalement au crépuscule. -->
+  <img
+    src="/img/photo-f71613424.jpg"
+    srcset="/img/photo-f71613424-500.jpg 500w, /img/photo-f71613424-960.jpg 960w, /img/photo-f71613424.jpg 1280w"
+    sizes="100vw"
+    width="1280"
+    height="692"
+    alt="DS 7 gris anthracite vu de trois quarts avant"
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_60%] lg:left-auto lg:w-[82%] lg:object-[60%_55%]"
+  />
+  <!-- Fondu bleu nuit vers la photo + filet doré en diagonale -->
+  <div class="absolute inset-0 -z-10 bg-linear-to-t from-night via-night/80 to-night/30 lg:bg-linear-to-r lg:from-night lg:from-35% lg:via-night/85 lg:via-50% lg:to-night/10" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-y-0 left-[44%] -z-10 hidden w-1.5 -skew-x-[24deg] bg-linear-to-b from-gold/0 via-gold to-gold/0 lg:block" aria-hidden="true"></div>
 
-    <div class="enter relative lg:col-span-5 lg:col-start-8" style="animation-delay: 120ms">
-      <div class="absolute -top-4 -right-4 h-[85%] w-[80%] border border-gold/70 lg:-top-6 lg:-right-6" aria-hidden="true"></div>
-      <!-- Photo d'illustration (stand-in) : à remplacer par la banquette arrière du véhicule du client. -->
-      <img
-        src="/img/photo-f201824352-960.jpg"
-        srcset="/img/photo-f201824352-500.jpg 500w, /img/photo-f201824352-960.jpg 960w"
-        sizes="(max-width: 1023px) 92vw, 36vw"
-        width="960"
-        height="1714"
-        alt="Banquette arrière claire et spacieuse d’une berline, portière ouverte"
-        fetchpriority="high"
-        decoding="async"
-        class="relative aspect-4/5 max-h-[70svh] w-full object-cover object-[50%_70%] lg:h-[calc(100svh-15rem)] lg:max-h-none lg:aspect-auto"
-      />
-      <div class="absolute bottom-6 left-0 flex flex-col gap-1 bg-ivory px-6 py-5 text-text shadow-[0_18px_40px_rgba(0,0,0,0.3)] lg:-left-8">
-        <span class="font-display text-3xl leading-none">0 € d’avance</span>
-        <span class="text-[0.9375rem] text-slate">avec votre bon de transport*</span>
+  <div class="container-site flex min-h-[44rem] items-end pt-56 pb-16 sm:items-center sm:pt-32 lg:min-h-[42rem] lg:pt-32">
+    <div class="enter flex max-w-[38rem] flex-col gap-7">
+      <span class="gold-rule" aria-hidden="true"></span>
+      <h1 class="text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-[4rem]">
+        Votre transport haut de gamme en Vendée
+      </h1>
+      <p class="text-[0.8125rem] font-semibold tracking-[0.14em] text-ink uppercase sm:text-base sm:tracking-[0.2em]">
+        Confort <span class="text-gold" aria-hidden="true">•</span> Sécurité <span class="text-gold" aria-hidden="true">•</span> Ponctualité
+      </p>
+      <p class="max-w-[32rem] text-lg text-ink-soft">
+        Taxi conventionné CPAM, transferts gares et aéroports, trajets professionnels :
+        au départ de {site.city}, à bord d’un {site.vehicle.model}.
+      </p>
+      <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+        <a id="hero-call" href={site.phoneHref} class="btn-gold">
+          <Icon name="phone" size={20} strokeWidth={2} />
+          Réserver votre course
+          <Icon name="chevron-right" size={18} strokeWidth={2} />
+        </a>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.eltaxidoisy.fr/sitemap-index.xml
+Sitemap: https://www.eltaxidoizie.fr/sitemap-index.xml

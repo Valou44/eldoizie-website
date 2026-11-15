@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="block-y bg-ivory text-text">
+  <div class="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <div class="flex flex-col gap-6">
+      <span class="gold-rule" aria-hidden="true"></span>
+      <h2 class="text-4xl leading-[1.1] lg:text-5xl">Un service sur mesure pour tous vos déplacements</h2>
+      <p class="text-lg text-slate">
+        <strong class="font-semibold text-text">{site.name}</strong> vous accompagne avec
+        professionnalisme et discrétion pour tous vos trajets : médicaux, privés ou professionnels.
+      </p>
+      <p class="text-lg text-slate">
+        Taxi conventionné par l’Assurance Maladie, je vous conduis à vos rendez-vous de soin sans
+        avance de frais, à bord d’un véhicule confortable et récent.
+      </p>
+      <a href="#services" class="btn-gold self-start">
+        Découvrir nos services <Icon name="chevron-right" size={18} strokeWidth={2} />
+      </a>
+    </div>
+    <!-- Photo d'illustration (stand-in) : carrelets au coucher du soleil, à remplacer par un paysage de la côte vendéenne. -->
+    <figure class="photo-zoom m-0 rounded-2xl shadow-[0_24px_48px_rgba(11,21,48,0.18)]">
+      <img
+        src="/img/photo-f76638337-960.jpg"
+        srcset="/img/photo-f76638337-500.jpg 500w, /img/photo-f76638337-960.jpg 960w, /img/photo-f76638337.jpg 1280w"
+        sizes="(max-width: 1023px) 92vw, 44vw"
+        width="960"
+        height="719"
+        alt="Carrelets de pêche sur pilotis au coucher du soleil, sur la côte atlantique"
+        loading="lazy"
+        decoding="async"
+        class="aspect-4/3 w-full rounded-2xl object-cover"
+      />
+    </figure>
+  </div>
+</section>

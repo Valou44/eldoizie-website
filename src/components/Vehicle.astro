@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const features = [
+  'Hybride rechargeable, silencieux et confortable',
+  `${site.vehicle.seats} places passagers, sièges cuir`,
+  'Montée facilitée, aide au bras et aux bagages',
+  'Fauteuil roulant pliant accepté dans le coffre',
+];
+---
+<section id="vehicule" class="relative overflow-hidden bg-ivory text-text">
+  <div class="container-site grid items-center gap-12 block-y lg:grid-cols-12 lg:gap-6">
+    <div class="flex flex-col gap-6 lg:col-span-5">
+      <span class="gold-rule" aria-hidden="true"></span>
+      <h2 class="text-4xl leading-[1.1] lg:text-5xl">Notre véhicule</h2>
+      <p class="text-xl leading-relaxed">
+        À bord d’un <strong class="font-semibold">{site.vehicle.model}</strong>, alliant élégance,
+        sécurité et confort, pour une expérience de transport d’exception.
+      </p>
+      <ul class="flex flex-col gap-3">
+        {features.map((f) => (
+          <li class="flex items-start gap-3 text-lg text-slate">
+            <Icon name="check" size={22} strokeWidth={2} class="mt-1 shrink-0 text-gold-dark" />
+            {f}
+          </li>
+        ))}
+      </ul>
+      <a href={site.phoneHref} class="btn-gold mt-2 self-start">
+        Réserver le véhicule <Icon name="chevron-right" size={18} strokeWidth={2} />
+      </a>
+    </div>
+    <!-- Photo d'illustration (stand-in) : à remplacer par une photo du DS 7 du client. Bord droit à fond perdu, comme le visuel. -->
+    <figure class="photo-zoom m-0 overflow-hidden rounded-2xl lg:col-span-7 lg:col-start-6 lg:-mr-[max(4rem,calc((100vw-80rem)/2))] lg:rounded-r-none">
+      <img
+        src="/img/photo-f124265840-960.jpg"
+        srcset="/img/photo-f124265840-500.jpg 500w, /img/photo-f124265840-960.jpg 960w"
+        sizes="(max-width: 1023px) 92vw, 55vw"
+        width="960"
+        height="598"
+        alt="DS 7 gris foncé vu de face, calandre et phares"
+        loading="lazy"
+        decoding="async"
+        class="aspect-16/10 w-full object-cover"
+      />
+    </figure>
+  </div>
+</section>

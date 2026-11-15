@@ -1,20 +1,26 @@
 ---
+import Icon from './Icon.astro';
 import { faq } from '../data/faq';
 ---
-<section id="faq" class="screen-section bg-ivory text-text">
+<section id="faq" class="block-y bg-ivory text-text">
   <div class="container-site grid gap-12 lg:grid-cols-12 lg:gap-6">
-    <div class="flex flex-col gap-5 lg:col-span-5 lg:pr-10">
-      <p class="label text-gold-dark">Questions fréquentes</p>
-      <h2 class="text-4xl leading-[1.08] lg:text-5xl">Le taxi conventionné, en clair</h2>
+    <div class="flex flex-col gap-6 lg:col-span-4">
+      <span class="gold-rule" aria-hidden="true"></span>
+      <h2 class="text-4xl leading-[1.1] lg:text-5xl">Questions fréquentes</h2>
+      <p class="text-lg text-slate">Tout savoir sur le taxi conventionné et la prise en charge par l’Assurance Maladie.</p>
     </div>
-    <!-- FAQ ouverte en entier (Taste Skill : pas d'accordéon). -->
-    <dl class="grid gap-x-10 border-t border-text/12 lg:col-span-7 lg:grid-cols-2">
-      {faq.map((item) => (
-        <div class="flex flex-col gap-2 border-b border-text/12 py-6">
-          <dt class="font-display text-xl leading-snug">{item.q}</dt>
-          <dd class="m-0 text-slate">{item.a}</dd>
-        </div>
+    <div class="flex flex-col gap-3 lg:col-span-8">
+      {faq.map((item, i) => (
+        <details class="group rounded-xl bg-paper px-6 shadow-[0_2px_10px_rgba(11,21,48,0.06)]" open={i === 0}>
+          <summary class="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-4 font-display text-xl [&::-webkit-details-marker]:hidden">
+            {item.q}
+            <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold-dark transition-transform duration-200 group-open:rotate-180">
+              <Icon name="chevron" size={20} strokeWidth={2} />
+            </span>
+          </summary>
+          <p class="pb-6 text-slate">{item.a}</p>
+        </details>
       ))}
-    </dl>
+    </div>
   </div>
 </section>

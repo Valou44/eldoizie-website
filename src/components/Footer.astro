@@ -1,0 +1,56 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const links = [
+  { href: '/#accueil', label: 'Accueil' },
+  { href: '/#services', label: 'Nos services' },
+  { href: '/#vehicule', label: 'Notre véhicule' },
+  { href: '/#zones', label: 'Zones d’intervention' },
+  { href: '/#contact', label: 'Contact' },
+];
+const socials = [
+  { href: site.socials.facebook, label: 'Facebook', icon: 'facebook' as const },
+  { href: site.socials.instagram, label: 'Instagram', icon: 'instagram' as const },
+].filter((s) => s.href);
+---
+<footer class="bg-night pb-28 text-ink md:pb-0">
+  <div class="container-site flex flex-col items-center gap-10 py-16 lg:flex-row lg:justify-between">
+    <Logo size="lg" />
+    <nav aria-label="Pied de page">
+      <ul class="flex flex-wrap justify-center gap-x-2 gap-y-2 text-[0.9375rem]">
+        {links.map((l, i) => (
+          <li class="flex items-center gap-2">
+            {i > 0 && <span class="text-white/30" aria-hidden="true">|</span>}
+            <a href={l.href} class="link-draw inline-flex min-h-11 items-center px-1 text-ink-soft hover:text-ink">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    {socials.length > 0 && (
+      <ul class="flex gap-3">
+        {socials.map((s) => (
+          <li>
+            <a href={s.href} rel="noopener" aria-label={s.label} class="flex size-12 items-center justify-center rounded-full bg-gold text-night transition-colors hover:bg-gold-light">
+              <Icon name={s.icon} size={22} strokeWidth={2} />
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-site flex flex-col items-center gap-3 py-6 text-center text-sm text-muted">
+      <p>
+        <span class="text-ink">{site.nameParts[0]} <span class="text-gold">{site.nameParts[1]}</span></span>
+        — Chauffeur indépendant · {site.department} (85) · Taxi conventionné CPAM
+      </p>
+      <p class="flex flex-wrap justify-center gap-x-4">
+        <a href="/mentions-legales/" class="link-draw text-ink-soft hover:text-ink">Mentions légales</a>
+        <a href="/credits-photos/" class="link-draw text-ink-soft hover:text-ink">Crédits photos</a>
+      </p>
+      <p>* Prise en charge selon votre situation : 100 % (ALD, maternité, accident du travail…) ou 55 % complétés par votre mutuelle.</p>
+    </div>
+  </div>
+</footer>

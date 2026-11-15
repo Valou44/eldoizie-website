@@ -1,13 +1,18 @@
 ---
+/** Logo typographique sur deux lignes, inspiré du visuel client (à remplacer par son vrai logo s'il en a un). */
 import { site } from '../data/site';
-interface Props { tone?: 'light' | 'dark'; }
-const { tone = 'light' } = Astro.props;
+interface Props { size?: 'md' | 'lg'; }
+const { size = 'md' } = Astro.props;
+const [top, bottom] = site.nameParts;
 ---
-<a
-  href="/"
-  class:list={['inline-flex items-center gap-3 no-underline', tone === 'light' ? 'text-ink' : 'text-text']}
-  aria-label={`${site.name}, accueil`}
->
-  <span class="flex size-9 items-center justify-center rounded-full border border-gold font-display text-lg text-gold" aria-hidden="true">O</span>
-  <span class="font-display text-[1.375rem] leading-none tracking-[-0.01em]">{site.name}</span>
+<a href="/" class="inline-flex flex-col items-center text-ink no-underline" aria-label={`${site.name}, accueil`}>
+  <svg aria-hidden="true" viewBox="0 0 120 14" class:list={['text-gold', size === 'lg' ? 'w-36' : 'w-24']} fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4 13c10-1 16-2 24-6 8-4 14-5.5 26-5.5 13 0 22 3 32 8 6 3 14 3.5 30 3.5" />
+  </svg>
+  <span class:list={['font-display leading-none font-medium tracking-[0.01em]', size === 'lg' ? 'text-5xl' : 'text-[1.75rem]']}>{top}</span>
+  <span class="mt-1 flex w-full items-center gap-2 text-gold">
+    <span class="h-px flex-1 bg-gold" aria-hidden="true"></span>
+    <span class:list={['font-display leading-none font-semibold uppercase tracking-[0.12em]', size === 'lg' ? 'text-xl' : 'text-sm']}>{bottom}</span>
+    <span class="h-px flex-1 bg-gold" aria-hidden="true"></span>
+  </span>
 </a>

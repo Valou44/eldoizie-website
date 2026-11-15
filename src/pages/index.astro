@@ -2,12 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import IconBand from '../components/IconBand.astro';
+import Intro from '../components/Intro.astro';
 import Services from '../components/Services.astro';
-import Steps from '../components/Steps.astro';
+import Vehicle from '../components/Vehicle.astro';
 import Zone from '../components/Zone.astro';
-import About from '../components/About.astro';
 import Faq from '../components/Faq.astro';
-import Contact from '../components/Contact.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Footer from '../components/Footer.astro';
 import MobileCallBar from '../components/MobileCallBar.astro';
 import { site, areaServed } from '../data/site';
 import { faq } from '../data/faq';
@@ -32,7 +34,7 @@ const business = {
     addressCountry: 'FR',
   },
   areaServed: areaServed.map((name) => ({ '@type': 'Place', name })),
-  ...(site.hours ? { openingHours: site.hours.schema } : {}),
+  ...(site.hours.schema.length ? { openingHours: site.hours.schema } : {}),
 };
 
 const taxiService = {
@@ -53,7 +55,8 @@ const taxiService = {
       'Consultations et examens médicaux',
       'Dialyse, chimiothérapie, radiothérapie',
       'Entrées et sorties d’hôpital',
-      'Gares et aéroport Nantes-Atlantique',
+      'Transferts gares et aéroport Nantes-Atlantique',
+      'Transport d’entreprises et de professionnels',
     ].map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
   },
 };
@@ -69,20 +72,37 @@ const faqPage = {
 };
 ---
 <Layout
-  title="Taxi conventionné CPAM en Vendée | El Taxi d'Oisy"
+  title="Taxi conventionné et transport haut de gamme en Vendée | El Taxi Doizie"
   jsonLd={[business, taxiService, faqPage]}
 >
   <Header />
   <main id="contenu">
     <Hero />
+    <IconBand
+      items={[
+        { icon: 'car', title: 'Transport toutes distances' },
+        { icon: 'plane', title: 'Transferts gares et aéroports' },
+        { icon: 'building', title: 'Transport entreprises et professionnels' },
+        { icon: 'cross', title: 'Conventionné CPAM' },
+      ]}
+    />
+    <Intro />
     <Services />
-    <Steps />
+    <IconBand
+      title="Pourquoi choisir"
+      highlight={site.name}
+      items={[
+        { icon: 'diamond', title: 'Un service haut de gamme', text: 'Pour un confort optimal' },
+        { icon: 'shield', title: 'Une sécurité maximale', text: 'Véhicule récent et entretenu' },
+        { icon: 'clock', title: 'Une grande disponibilité', text: site.hours.label },
+        { icon: 'handshake', title: 'Un chauffeur à votre écoute', text: 'Pour un service personnalisé' },
+      ]}
+    />
+    <Vehicle />
     <Zone />
-    <About />
     <Faq />
+    <CtaBand />
   </main>
-  <Contact>
-    <span slot="credits">Photos d’illustration : <a href="/credits-photos/" class="link-draw text-ink-soft hover:text-ink">crédits</a>.</span>
-  </Contact>
+  <Footer />
   <MobileCallBar />
 </Layout>

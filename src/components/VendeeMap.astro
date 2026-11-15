@@ -1,0 +1,58 @@
+---
+/**
+ * Contour réel du département de la Vendée (données IGN via france-geojson, simplifiées),
+ * tracé en or, avec un repère sur la commune de base et le mot « Vendée » manuscrit.
+ */
+import outline from '../data/vendee-outline.json';
+import { site } from '../data/site';
+interface Props { class?: string; }
+const { class: className } = Astro.props;
+const [px, py] = outline.pin;
+const { w, h } = outline;
+---
+<svg
+  viewBox={`-20 -30 ${w + 40} ${h + 60}`}
+  role="img"
+  aria-label={`Carte de la Vendée, avec ${site.city} repéré`}
+  class:list={['overflow-visible', className]}
+>
+  <defs>
+    <filter id="gold-glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.2" result="b" />
+      <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Traits de pinceau blancs, comme sur le visuel du client -->
+  <g fill="none" stroke="#f4f1ea" stroke-linecap="round" opacity="0.75">
+    <path d={`M${w * 0.18} ${-12} C ${w * 0.4} ${-22}, ${w * 0.62} ${-6}, ${w * 0.86} ${-16}`} stroke-width="2.4" />
+    <path d={`M${w * 0.44} ${h + 14} C ${w * 0.56} ${h + 22}, ${w * 0.7} ${h + 10}, ${w * 0.8} ${h + 18}`} stroke-width="2" />
+  </g>
+
+  <!-- Contour du département et îles (Noirmoutier, Yeu) -->
+  <path
+    d={outline.d}
+    fill="rgb(11 21 48 / 0.35)"
+    stroke="var(--color-gold)"
+    stroke-width="2.4"
+    stroke-linejoin="round"
+    filter="url(#gold-glow)"
+  />
+
+  <!-- Repère sur la commune de base -->
+  <g transform={`translate(${px} ${py})`}>
+    <ellipse cx="0" cy="1" rx="7" ry="2.5" fill="rgb(0 0 0 / 0.35)" />
+    <path d="M0 0 C -4 -8, -13 -14, -13 -24 A 13 13 0 1 1 13 -24 C 13 -14, 4 -8, 0 0 Z" fill="var(--color-gold)" />
+    <circle cx="0" cy="-24" r="5" fill="var(--color-night)" />
+  </g>
+
+  <text
+    x={w * 0.6}
+    y={h * 0.6}
+    text-anchor="middle"
+    fill="#f4f1ea"
+    font-family="'Great Vibes', cursive"
+    font-size="64"
+    transform={`rotate(-8 ${w * 0.6} ${h * 0.6})`}
+  >Vendée</text>
+</svg>

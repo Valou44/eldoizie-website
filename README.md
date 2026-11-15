@@ -1,4 +1,4 @@
-# El Taxi d'Oisy — site vitrine
+# El Taxi Doizie — site vitrine
 
 Landing page d'un taxi conventionné CPAM en Vendée. Astro 7 + Tailwind 4, site statique (Vercel ou Netlify).
 
