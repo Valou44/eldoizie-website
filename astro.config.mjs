@@ -12,5 +12,6 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap()]
+  // Pages en noindex exclues du sitemap
+  integrations: [sitemap({ filter: (page) => !page.includes('/credits-photos') })]
 });

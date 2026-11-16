@@ -14,13 +14,15 @@ export const site = {
   /** Second numéro, affiché dans le pied de page. */
   phone2: '06 60 29 56 28',
   phone2Href: 'tel:+33660295628',
-  email: 'contact@eltaxidoizie.fr', // TODO : adresse réelle
+  email: 'eltaxi8520@gmail.com',
 
   driver: 'Eric',
   city: 'Saint-Gervais',
   /** Commune de rattachement de l'autorisation de stationnement (licence). */
   adsCity: 'La Chapelle-Hermier',
   postalCode: '85230',
+  /** Coordonnées de la commune (pas du domicile), pour les données structurées. */
+  geo: { lat: 46.9005, lng: -2.0028 },
   region: 'Pays de la Loire',
   department: 'Vendée',
 
@@ -41,7 +43,7 @@ export const site = {
     siret: '877 733 741 00020',
     ape: '4932Z (transports de voyageurs par taxis)',
     address: '19 chemin du Gaveau, 85230 Saint-Gervais',
-    host: '[Hébergeur : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis]', // TODO à confirmer
+    host: 'Netlify, Inc., 101 2nd Street, Suite 575, San Francisco, CA 94105, États-Unis — www.netlify.com',
   },
 
   /** Avis Google : à activer quand la fiche Google Business Profile existera. */

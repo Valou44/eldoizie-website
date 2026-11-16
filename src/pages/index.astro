@@ -25,7 +25,7 @@ const business = {
   url: base,
   telephone: site.phoneHref.replace('tel:', ''),
   email: site.email,
-  image: `${base}/og-image.png`,
+  image: `${base}/og-image.jpg`,
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.city,
@@ -33,6 +33,15 @@ const business = {
     addressRegion: site.region,
     addressCountry: 'FR',
   },
+  geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng },
+  contactPoint: [site.phoneHref, site.phone2Href].map((tel) => ({
+    '@type': 'ContactPoint',
+    telephone: tel.replace('tel:', ''),
+    contactType: 'reservations',
+    areaServed: 'FR',
+    availableLanguage: 'French',
+  })),
+  logo: `${base}/apple-touch-icon.png`,
   areaServed: areaServed.map((name) => ({ '@type': 'Place', name })),
   ...(site.hours.schema.length ? { openingHours: site.hours.schema } : {}),
 };
