@@ -11,11 +11,14 @@ import { site } from '../data/site';
 
       <section class="flex flex-col gap-3">
         <h2 class="text-2xl">Éditeur du site</h2>
-        <p>{site.name} — {site.legal.owner}, entrepreneur individuel.<br />
+        <p>{site.name} — {site.legal.owner}, {site.legal.status.toLowerCase()}.<br />
+          Adresse : {site.legal.address}<br />
           SIRET : {site.legal.siret}<br />
-          Autorisation de stationnement : {site.legal.adsNumber}<br />
+          Code APE : {site.legal.ape}<br />
+          Autorisation de stationnement délivrée par la commune de {site.adsCity} (Vendée).<br />
           Taxi conventionné par l’Assurance Maladie (CPAM de la Vendée).<br />
-          Téléphone : <a href={site.phoneHref}>{site.phone}</a> · E-mail : <a href={`mailto:${site.email}`}>{site.email}</a></p>
+          Téléphone : <a href={site.phoneHref}>{site.phone}</a> ou <a href={site.phone2Href}>{site.phone2}</a><br />
+          E-mail : <a href={`mailto:${site.email}`}>{site.email}</a></p>
         <p>Directeur de la publication : {site.legal.owner}.</p>
       </section>
 

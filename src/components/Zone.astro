@@ -4,7 +4,7 @@ import Icon from './Icon.astro';
 import VendeeMap from './VendeeMap.astro';
 import { site } from '../data/site';
 
-const cities = ['Saint-Gervais', 'Challans', 'La Roche-sur-Yon'];
+const cities = ['Saint-Gervais', site.adsCity, 'Challans', 'La Roche-sur-Yon'];
 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.city} ${site.postalCode}`)}`;
 ---
 <section id="zones" class="relative isolate overflow-hidden bg-night text-ink">
@@ -29,6 +29,9 @@ const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURICompo
       <p class="max-w-[34rem] text-lg text-ink-soft">
         Basé à {site.city}, {site.name} intervient en Vendée et dans toute la région pour vous
         accompagner, jusqu’au CHU de Nantes, à Angers ou à Cholet.
+      </p>
+      <p class="-mt-2 max-w-[34rem] text-ink-soft">
+        Taxi rattaché à la commune de <strong class="font-semibold text-ink">{site.adsCity}</strong>{' '}(autorisation de stationnement).
       </p>
       <div class="flex items-start gap-4">
         <Icon name="pin" size={40} strokeWidth={1.8} class="shrink-0 text-gold" />

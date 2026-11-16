@@ -28,6 +28,15 @@ const socials = [
         ))}
       </ul>
     </nav>
+    <div class="flex flex-col items-center gap-2 lg:items-end">
+      <span class="text-sm text-muted">Réservations</span>
+      <a href={site.phoneHref} class="link-draw inline-flex min-h-11 items-center gap-2.5 font-display text-xl text-ink hover:text-gold-light">
+        <Icon name="phone" size={20} strokeWidth={2} class="text-gold" /> {site.phone}
+      </a>
+      <a href={site.phone2Href} class="link-draw inline-flex min-h-11 items-center gap-2.5 font-display text-xl text-ink hover:text-gold-light">
+        <Icon name="phone" size={20} strokeWidth={2} class="text-gold" /> {site.phone2}
+      </a>
+    </div>
     {socials.length > 0 && (
       <ul class="flex gap-3">
         {socials.map((s) => (
@@ -43,8 +52,7 @@ const socials = [
   <div class="border-t border-white/10">
     <div class="container-site flex flex-col items-center gap-3 py-6 text-center text-sm text-muted">
       <p>
-        <span class="text-ink">{site.nameParts[0]} <span class="text-gold">{site.nameParts[1]}</span></span>
-        — Chauffeur indépendant · {site.department} (85) · Taxi conventionné CPAM
+        <span class="text-ink">{site.nameParts[0]} <span class="text-gold">{site.nameParts[1]}</span></span>{' '}— Chauffeur indépendant · {site.department} (85) · Taxi conventionné CPAM
       </p>
       <p class="flex flex-wrap justify-center gap-x-4">
         <a href="/mentions-legales/" class="link-draw text-ink-soft hover:text-ink">Mentions légales</a>

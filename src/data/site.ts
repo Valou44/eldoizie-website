@@ -7,14 +7,19 @@ export const site = {
   nameParts: ['EL Taxi', 'Doizie'] as const, // logo sur deux lignes : « EL Taxi » / « DOIZIE »
   url: 'https://www.eltaxidoizie.fr', // TODO : domaine définitif (aussi dans astro.config.mjs)
   description:
-    "Taxi conventionné CPAM et transport haut de gamme en Vendée, au départ de Saint-Gervais : trajets médicaux, transferts gares et aéroport de Nantes, déplacements professionnels, dans tout le Pays de la Loire.",
+    'Taxi à Saint-Gervais, Challans, La Roche-sur-Yon : trajets médicaux CPAM, gares, aéroport de Nantes, entreprises. 7 j/7 sur réservation.',
 
-  phone: '02 51 00 00 00', // TODO : numéro réel
-  phoneHref: 'tel:+33251000000', // TODO : numéro réel au format international
+  phone: '06 59 56 02 60',
+  phoneHref: 'tel:+33659560260',
+  /** Second numéro, affiché dans le pied de page. */
+  phone2: '06 60 29 56 28',
+  phone2Href: 'tel:+33660295628',
   email: 'contact@eltaxidoizie.fr', // TODO : adresse réelle
 
-  driver: '[Prénom]', // TODO
-  city: 'Saint-Gervais', // d'après le visuel du client — à confirmer
+  driver: 'Eric',
+  city: 'Saint-Gervais',
+  /** Commune de rattachement de l'autorisation de stationnement (licence). */
+  adsCity: 'La Chapelle-Hermier',
   postalCode: '85230',
   region: 'Pays de la Loire',
   department: 'Vendée',
@@ -31,9 +36,11 @@ export const site = {
   socials: { facebook: '', instagram: '' }, // TODO
 
   legal: {
-    owner: '[Nom Prénom]', // TODO
-    siret: '[SIRET]', // TODO
-    adsNumber: '[N° d’autorisation de stationnement]', // TODO
+    owner: 'Eric Doizie',
+    status: 'Entrepreneur individuel',
+    siret: '877 733 741 00020',
+    ape: '4932Z (transports de voyageurs par taxis)',
+    address: '19 chemin du Gaveau, 85230 Saint-Gervais',
     host: '[Hébergeur : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis]', // TODO à confirmer
   },
 
@@ -43,6 +50,7 @@ export const site = {
 
 export const areaServed = [
   'Saint-Gervais',
+  'La Chapelle-Hermier',
   'Challans',
   'La Roche-sur-Yon',
   'Saint-Jean-de-Monts',
